@@ -24,6 +24,6 @@ void write_trace_pe_img(char product[], BOOLEAN add_comma);
 
 void print_check_group(char * text);
 
-void exec_check(char * text, int (*callback)(), char * text_log, char * text_trace);
+int exec_check(char * text, int (*callback)(), char * text_log, char * text_trace);
 
 #endif

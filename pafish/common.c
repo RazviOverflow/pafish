@@ -110,7 +110,7 @@ void print_check_group(char * text) {
 	printf("\n[-] %s\n", text);
 }
 
-void exec_check(char * text, int (*callback)(), char * text_log, char * text_trace) {
+int exec_check(char * text, int (*callback)(), char * text_log, char * text_trace) {
 	int check_result;
 	int (*callback_writeslog)(int) = callback;
 
@@ -121,7 +121,6 @@ void exec_check(char * text, int (*callback)(), char * text_log, char * text_tra
 		check_result = callback();
 	else
 		check_result = callback_writeslog(TRUE);
-
 	if (check_result == TRUE) {
 		/* Some checks write their own logs */
 		if (text_log)
@@ -130,5 +129,6 @@ void exec_check(char * text, int (*callback)(), char * text_log, char * text_tra
 		write_trace(text_trace);
 	}
 	else print_not_traced();
+	return check_result;
 }
 
